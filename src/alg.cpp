@@ -22,19 +22,18 @@ int countPairs2(int* arr, int len, int value) {
                 count += n * (n - 1) / 2;
                 break;
             } else {
-                int checkLeft = 1;
-                while ((left + checkLeft) < right &&
-                    arr[left + checkLeft] == arr[left]) {
-                    checkLeft++;
+                int leftVal = arr[left];
+                int rightVal = arr[right];
+                int cntLeft = 0, cntRight=0;
+                while (left <= right && arr[left] == leftVar) {
+                    cntLeft++;
+                    left++;
                 }
-                int checkRight = 1;
-                while ((right - checkRight) >= left &&
-                    arr[right - checkRight] == arr[right]) {
-                    checkRight++;
+                while (left <= right && arr[right] == rightVal){
+                    cntRight++;
+                    right--;
                 }
-                count += checkLeft * checkRight;
-                left += checkLeft;
-                right -= checkRight;
+                count += cntLeft*cntRight;
             }
         } else if (sum < value) {
             left++;
