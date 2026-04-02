@@ -24,12 +24,12 @@ int countPairs2(int* arr, int len, int value) {
             } else {
                 int leftVal = arr[left];
                 int rightVal = arr[right];
-                int cntLeft = 0, cntRight=0;
+                int cntLeft = 0, cntRight = 0;
                 while (left <= right && arr[left] == leftVar) {
                     cntLeft++;
                     left++;
                 }
-                while (left <= right && arr[right] == rightVal){
+                while (left <= right && arr[right] == rightVal) {
                     cntRight++;
                     right--;
                 }
