@@ -32,7 +32,7 @@ int countPairs2(int* arr, int len, int value) {
                     arr[right - checkRight] == arr[right]) {
                     checkRight++;
                 }
-                count = checkLeft * checkRight;
+                count += checkLeft * checkRight;
                 left += checkLeft;
                 right -= checkRight;
             }
