@@ -21,11 +21,13 @@ int countPairs2(int* arr, int len, int value) {
                 break;
             } else {
                 int checkLeft = 1;
-                while ((left + checkLeft) < right && arr[left + checkLeft] == arr[left]) {
+                while ((left + checkLeft) < right &&
+                    arr[left + checkLeft] == arr[left]) {
                     checkLeft++;
                 }
                 int checkRight = 1;
-                while ((right + checkRight) > left && arr[right - checkRight] == arr[right]) {
+                while ((right + checkRight) > left &&
+                    arr[right - checkRight] == arr[right]) {
                     checkRight++;
                 }
                 count = checkLeft * checkRight;
