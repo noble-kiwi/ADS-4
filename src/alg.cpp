@@ -53,7 +53,6 @@ int countPairs3(int *arr, int len, int value) {
     int count = 0;
     for (int i = 0; i < len; ++i) {
         int target = value - arr[i];
-        // бинарный поиск левой границы (первое вхождение target) в диапазоне [i+1, len)
         int left = i + 1;
         int right = len;
         while (left < right) {
@@ -64,7 +63,6 @@ int countPairs3(int *arr, int len, int value) {
                 right = mid;
         }
         int first = left;
-        // бинарный поиск правой границы (первый элемент > target)
         left = i + 1;
         right = len;
         while (left < right) {
