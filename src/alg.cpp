@@ -1,7 +1,7 @@
 // Copyright 2021 NNTU-CS
 int countPairs1(int* arr, int len, int value) {
     int count = 0;
-    for (int i = 0; i < len-1; i++) {
+    for (int i = 0; i < len; i++) {
         for (int j = i + 1; j < len; j++) {
             if (arr[i] + arr[j] == value) {
                 count++;
@@ -25,58 +25,58 @@ int countPairs2(int* arr, int len, int value) {
                 int leftVal = arr[left];
                 int rightVal = arr[right];
                 int cntLeft = 0, cntRight = 0;
-                while (left <= right && arr[left] == leftVal) {
+                while (left <= len && arr[left] == leftVal) {
                     cntLeft++;
                     left++;
                 }
-                while (left <= right && arr[right] == rightVal) {
+                while (right >= 0 && arr[right] == rightVal) {
                     cntRight++;
                     right--;
                 }
                 count += cntLeft * cntRight;
             }
         } else if (sum < value) {
-            left++;
+            int leftVal = arr[left];
+            while (left < len && arr[left] == leftVal){
+                left++;
+            }
         } else {
-            right--;
+            int rightVal = arr[right];
+            while (right >= 0 && arr[right] == rightVal){
+                right--;
+            }
         }
     }
     return count;
 }
 int countPairs3(int* arr, int len, int value) {
     int count = 0;
-    for (int i = 0; i < len - 1; i++) {
+    for (int i = 0; i < len; i++) {
         int object = value - arr[i];
-        int startOne = -1;
-        int hight = len - 1, low = i + 1;
+        int hight = len, low = i + 1;
         while (low <= hight) {
             int middle = low + (hight - low) / 2;
-            if (arr[middle] == object) {
-                startOne = middle;
-                hight = middle - 1;
-            } else if (arr[middle] < object) {
-                low = middle + 1;
+            if (arr[middle] < object) {
+               low = middle + 1;
             } else {
-                hight = middle - 1;
+                hight = middle;
             }
         }
-        if (startOne == -1) continue;
-
-        int startTwo = -1;
-        hight = len - 1;
+        int startOne = low;
         low = i + 1;
-        while (low <= hight) {
+        hight = len;
+        while (low < hight) {
             int middle = low + (hight - low) / 2;
-            if (arr[middle] == object) {
+            if (arr[middle] <= object) {
                 startTwo = middle;
                 low = middle + 1;
-            } else if (arr[middle] < object) {
-                low = middle + 1;
+            }
             } else {
-                hight = middle - 1;
+                hight = middle;
             }
         }
-        count += (startTwo - startOne + 1);
+    int lasr = low;
+    count += (startTwo - startOne);
     }
     return count;
 }
