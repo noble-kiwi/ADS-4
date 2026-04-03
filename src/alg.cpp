@@ -27,38 +27,37 @@ int countPairs2(int *arr, int len, int value) {
 }
 int countPairs3(int *arr, int len, int value) {
     int pairCount = 0;
-    for (int index = 0; index < arrayLength - 1; index++) {
-      int needed = targetSum - array[index];
-      int firstPos = -1;
-      int left = index + 1, right = arrayLength - 1;
-      while (left <= right) {
-        int middle = left + (right - left) / 2;
-        if (array[middle] == needed) {
-          firstPos = middle;
-          right = middle - 1;
-        } else if (array[middle] < needed) {
-          left = middle + 1;
-        } else {
-          right = middle - 1;
+    for (int index = 0; index < len - 1; ++index) {
+        int needed = value - arr[index];
+        int firstPos = -1;
+        int left = index + 1, right = len - 1;
+        while (left <= right) {
+            int middle = left + (right - left) / 2;
+            if (arr[middle] == needed) {
+                firstPos = middle;
+                right = middle - 1;
+            } else if (arr[middle] < needed) {
+                left = middle + 1;
+            } else {
+                right = middle - 1;
+            }
         }
-      }
-      if (firstPos == -1) continue;
-      int lastPos = -1;
-      left = index + 1;
-      right = arrayLength - 1;
-      while (left <= right) {
-        int middle = left + (right - left) / 2;
-        if (array[middle] == needed) {
-          lastPos = middle;
-          left = middle + 1;
-        } else if (array[middle] < needed) {
-          left = middle + 1;
-        } else {
-          right = middle - 1;
+        if (firstPos == -1) continue;
+        int lastPos = -1;
+        left = index + 1;
+        right = len - 1;
+        while (left <= right) {
+            int middle = left + (right - left) / 2;
+            if (arr[middle] == needed) {
+                lastPos = middle;
+                left = middle + 1;
+            } else if (arr[middle] < needed) {
+                left = middle + 1;
+            } else {
+                right = middle - 1;
+            }
         }
-      }
-      return pairCount;
-      pairCount += (lastPos - firstPos + 1);
+        pairCount += (lastPos - firstPos + 1);
     }
     return pairCount;
 }
