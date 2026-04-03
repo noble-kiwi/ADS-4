@@ -15,27 +15,27 @@ int countPairs1(int *arr, int len, int value)
 int countPairs2(int *arr, int len, int value)
 {
     int count = 0;
-    int i = 0;
-    int j = len - 1;
-    while (i < j) {
-        int sum = arr[i] + arr[j];
+    int left = 0;
+    int right = len - 1;
+    while (left < right) {
+        int sum = arr[left] + arr[right];
         if (sum < value) {
-            ++i;
+            ++left;
         } else if (sum > value) {
-            --j;
+            --right;
         } else {
-            int leftVal = arr[i];
-            int rightVal = arr[j];
+            int leftVal = arr[left];
+            int rightVal = arr[right];
             int leftCount = 0;
-            while (i < len && arr[i] == leftVal) {
+            while (left <= right && arr[left] == leftVal) {
                 ++leftCount;
-                ++i;
+                ++left;
             }
             int rightCount = 0;
-            while (j >= 0 && arr[j] == rightVal) {
+            while (left <= right && arr[right] == rightVal) {
                 ++rightCount;
-                --j;
-            }
+                --right;
+            }            
             if (leftVal == rightVal) {
                 count += leftCount * (leftCount - 1) / 2;
             } else {
@@ -45,10 +45,9 @@ int countPairs2(int *arr, int len, int value)
     }
     return count;
 }
-
 int countPairs3(int *arr, int len, int value)
 {
-    int count = 0;
+    int count = 0;    
     for (int i = 0; i < len; ++i) {
         int target = value - arr[i];
         int left = i + 1;
@@ -61,7 +60,7 @@ int countPairs3(int *arr, int len, int value)
                 right = mid;
             }
         }
-        int lb = left;
+        int first = left;
         left = i + 1;
         right = len;
         while (left < right) {
@@ -72,8 +71,8 @@ int countPairs3(int *arr, int len, int value)
                 right = mid;
             }
         }
-        int ub = left;
-        count += (ub - lb);
+        int last = left;
+        count += (last - first);
     }
     return count;
 }
