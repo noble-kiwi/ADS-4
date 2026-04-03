@@ -11,21 +11,20 @@ int countPairs1(int *arr, int len, int value) {
     return count;
 }
 
-int countPairs2(int *arr, int len, int value) {
+int countPairs2(int *arr, int len, int value){
     int count = 0;
     for (int i = 0; i < len; ++i) {
         for (int j = len - 1; j > i; --j) {
             int sum = arr[i] + arr[j];
             if (sum == value) {
                 ++count;
-            } else if (sum > value) {
+            } else if (sum < value) {
                 break;
             }
         }
     }
     return count;
 }
-
 int countPairs3(int *arr, int len, int value) {
     int count = 0;
     for (int i = 0; i < len; ++i) {
